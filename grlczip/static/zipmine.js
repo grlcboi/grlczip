@@ -10,27 +10,39 @@ function download_url(path) {
 }
 
 $(document).ready(function() {
-
+	// handle method selection
 	$('#select_method').change(function() {
 		if (this.value == 'gpu') {
-			$('#input_wallet').hide()
+			// hide CPU stuff
+			$('#select_cpu_arch').hide()
+			// hide specific GPU stuff
 			$('#select_cuda_ver').hide()
 			$('#cuda_info').hide()
+			// hide generic stuff
+			$('#input_wallet').hide()
 			$('#submit').hide()
+			// display next required info
 			$('#select_gpu_make').css('display','inline');
 			
 		} else if (this.value =='cpu') {
+			// hide GPU stuff
 			$('#select_gpu_make').hide()
 			$('#select_cuda_ver').hide()
 			$('#cuda_info').hide()
-			$('#input_wallet').css('display','inline');
-			$('#submit').css('display','inline');
+			// hide specific CPU stuff
+			$('#select_cpu_arch').hide()
+			// hide generic stuff
+			$('#input_wallet').hide()
+			$('#submit').hide()
+			// display next required info
+			$('#select_cpu_arch').css('display','inline');
 		}
 	});
+	// handle GPU selection details
 	$('#select_gpu_make').change(function() {
 		if (this.value == 'nvidia') {
 			$('#select_cuda_ver').css('display','inline');
-			$('#cuda_info').css('display','inline');
+			$('#cuda_info').css('display','inline'); // informational
 			$('#input_wallet').hide()
 			$('#submit').hide()
 		} else {
@@ -41,26 +53,48 @@ $(document).ready(function() {
 		}
 	});
 	$('#select_cuda_ver').change(function() {
-		if (this.value) {
+		if (this.value != 'select') {
 			$('#input_wallet').css('display','inline');
 			$('#submit').css('display','inline');
 		}
 	});
-
-	$('#input_wallet').click(function(){
-		this.value = ''
-	});
-
-	$('#input_wallet').focusout(function(){
-		if (!this.value) { this.value = 'Enter GRLC Address' }
+	// handle CPU selection details
+	$('#select_cpu_arch').change(function() {
+		if (this.value != 'select') {
+			$('#input_wallet').css('display','inline');
+			$('#submit').css('display','inline');
+		}
 	});	
 
+
+	// handle submission
 	$('#submit').click(function() {
 		try{
 			//if cpu
 			if ( $('#select_method').val() == 'cpu') {
 				if ($('#input_wallet').val() == 'Enter GRLC Address') { throw('Check address!') }
 				download_url('/download/cpu/' + $('#input_wallet').val() + '/miner.zip')
+
+
+				switch($('#select_cpu_arch').val()) {
+					    case 'nehalem':
+					        alert('nehalem')
+					        break;
+					    case 'westmere':
+					        alert('westmere')
+					        break;
+					    case 'sandybridge':
+					        alert('sandybridge')
+					        break;
+					    case 'haswell':
+					        alert('haswell')
+					        break;
+					    case 'universal':
+					        alert('universal')
+					        break;
+					    default:
+					        throw('Check CPU architecture!')
+				}
 			}
 			//if gpu
 			else if ($('#select_method').val() == 'gpu') {
@@ -83,4 +117,14 @@ $(document).ready(function() {
 			alert(err)
 		}
 	})
-});
+
+	// makes address field pretty
+	$('#input_wallet').click(function(){
+		this.value = ''
+	});
+	// makes address field pretty
+	$('#input_wallet').focusout(function(){
+		if (!this.value) { this.value = 'Enter GRLC Address' }
+
+	});
+});	

@@ -1,35 +1,48 @@
-<body>
-	<form action="https://garlic.wine/download" method="post">
-		<select id='select_method'>
-			<option>Select Method</option>
-			<option value='gpu'>GPU</option>
-			<option value='cpu'>CPU</option>
-		</select>
+<head>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="./zipmine.js"></script>
+
+	<style type="text/css">
+		.hidden {
+	        display: none;
+	    }
+	</style>
+</head>
 
 
+<div>
+    Generate a miner:
+    <select id='select_method'>
+        <option value='select'>GPU or CPU</option>
+        <option value='gpu'>GPU</option>
+        <option value='cpu'>CPU</option>
+    </select>
+    <!-- handle gpu -->
+    <select class='hidden' id='select_gpu_make'>
+        <option value='select'>Make</option>
+        <option value='nvidia'>NVidia</option>
+        <option value='amd'>AMD</option>
+    </select>
+    <select class='hidden' id='select_cuda_ver'>
+        <option value='select'>CUDA Version</option>
+        <option value='9&+'>9 and up</option>
+        <option value='8&-'>8 and lower</option>
+    </select>
+    <!-- handle cpu -->
+    <select class='hidden' id='select_cpu_arch'>
+        <option value='select'>Architecture</option>
+        <option value='universal'>Universal</option>
+        <option value='nehalem'>Nehalem</option>
+        <option value='westmere'>Westmere</option>
+        <option value='sandybridge'>Sandybridge</option>
+        <option value='haswell'>Haswell</option>
+        <option value='ryzen'>Ryzen</option>
+    </select>    
 
-
-
-
-
-
-
-
-
-
-		<select class='hidden' id='select_gpu_make'>
-			<option>Select Card Make</option>
-			<option value='nvidia'>NVidia</option>
-			<option value='amd'>AMD</option>
-		</select>
-		<select class='hidden' id='select_cuda_ver'>
-			<option>Select CUDA Version</option>
-			<option value='9&+'>9 and up</option>
-			<option value='8&-'>8 and lower</option>
-		</select>
-		<input type='text' class='hidden' id='input_wallet' value='Enter GRLC Address'></input>
-		<input type="submit" class='hidden' id='submit' value="Download Miner!">
-	</form>
-<a class='hidden' href='google.com'>Determine which CUDA version you have</a>
-
-</body>
+    <input type='text' class='hidden' id='input_wallet' value='Enter GRLC Address'></input>
+    <button class='hidden' id='submit'>Download Miner</button>
+    <br>
+    <a class='hidden' id='cuda_info' href='https://google.com'>Determine which CUDA version you have</a>
+    <br>
+</div>
