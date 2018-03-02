@@ -1,5 +1,13 @@
 var download_base = 'https://garlic.wine'
 var $idown;  // Keep it outside of the function, so it's initialized once.
+
+function gen_download_path(path_bits){
+	delim = '/'
+	for (var i = 0; i < path_bits.length; i++) {
+		console.log(arguments[i]);
+	}
+}
+
 function download_url(path) {
 	url = download_base + path
 	if ($idown) {
@@ -66,53 +74,56 @@ $(document).ready(function() {
 		}
 	});	
 
-
 	// handle submission
 	$('#submit').click(function() {
+		path = []
 		try{
 			//if cpu
 			if ( $('#select_method').val() == 'cpu') {
-				if ($('#input_wallet').val() == 'Enter GRLC Address') { throw('Check address!') }
-				download_url('/download/cpu/' + $('#input_wallet').val() + '/miner.zip')
-
-
+				path[path.length] = 'cpu'
 				switch($('#select_cpu_arch').val()) {
 					    case 'nehalem':
-					        alert('nehalem')
+					        path[path.length] = 'nehalem'
 					        break;
 					    case 'westmere':
-					        alert('westmere')
+					        path[path.length] = 'westmere'
 					        break;
 					    case 'sandybridge':
-					        alert('sandybridge')
+					        path[path.length] = 'sandybridge'
 					        break;
 					    case 'haswell':
-					        alert('haswell')
+					        path[path.length] = 'haswell'
 					        break;
 					    case 'universal':
-					        alert('universal')
+					        path[path.length] = 'universal'
 					        break;
-					    default:
+					    case 'select':
 					        throw('Check CPU architecture!')
 				}
+				if ($('#input_wallet').val() == 'Enter GRLC Address') { throw('Check address!') }
+				path[path.length] = $('#input_wallet').val()
 			}
 			//if gpu
 			else if ($('#select_method').val() == 'gpu') {
+				path[path.length] = 'gpu'
 				//if nvidia
 				if ( $('#select_gpu_make').val() == 'nvidia' ) {
+					path[path.length] = 'nvidia'
 					if ( $('#select_cuda_ver').val() == 'select' ) { throw('Check CUDA version!') }
 					else if ( $('#input_wallet').val() == 'Enter GRLC Address' ) { throw('Check address!') }
-					download_url('/download/nvidia/'+ $('#select_cuda_ver').val() + '/' + $('#input_wallet').val() + '/miner.zip')
+					path[path.length] = $('#select_cuda_ver').val() 
+					path[path.length] = $('#input_wallet').val()
 				}
 				//if amd
 				else if ( $('#select_gpu_make').val() == 'amd' ) {
+					path[path.length] = 'amd'
 					if ( $('#input_wallet').val() == 'Enter GRLC Address' ) { throw('Check address!') }
+					path[path.length] = $('#input_wallet').val()
 				}
 				else { throw('Check gpu make!') }
-				download_url('/download/amd/' + $('#input_wallet').val() + '/miner.zip')
 			}
 			else { throw('Check method!') }
-
+			gen_download_path(path)
 		} catch (err) {
 			alert(err)
 		}
