@@ -1,13 +1,6 @@
 var download_base = 'https://garlic.wine'
 var $idown;  // Keep it outside of the function, so it's initialized once.
 
-function gen_download_path(path_bits){
-	delim = '/'
-	for (var i = 0; i < path_bits.length; i++) {
-		console.log(arguments[i]);
-	}
-}
-
 function download_url(path) {
 	url = download_base + path
 	if ($idown) {
@@ -15,6 +8,15 @@ function download_url(path) {
 	} else {
 		$idown = $('<iframe>', { id:'idown', src:url }).hide().appendTo('body');
 	}
+}
+
+function gen_download_path(path_bits){
+	path = ''
+	for (var i = 0; i < path_bits.length; i++) {
+		path += '/' + path_bits[i]
+		console.log(path_bits[i]);
+	}
+	download_url(path)
 }
 
 $(document).ready(function() {
