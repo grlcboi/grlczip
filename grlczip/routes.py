@@ -50,7 +50,7 @@ def build_miner(arch, address):
     with open(build_path + '/StartMiner.bat', 'w+') as file:
         file.write(template.render(miner = bin_name, address = address))
 
-    zipf = ZipFile(zip_path, 'x', ZIP_DEFLATED)
+    zipf = ZipFile(zip_path, 'w', ZIP_DEFLATED)
     zipdir (build_path, zipf)
     zipf.close()
 
