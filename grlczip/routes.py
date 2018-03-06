@@ -3,7 +3,7 @@ from glob import glob
 from shutil import copy, rmtree
 from zipfile import ZipFile, ZIP_DEFLATED
 from uuid import uuid4
-from flask import send_file
+from flask import g, send_file
 from jinja2 import Environment, PackageLoader
 from grlczip import app
     
@@ -55,10 +55,6 @@ def build_miner(arch, address):
     zipf.close()
 
     rmtree(build_path)
-
-    # @after_this_request
-    # def remove_archive():
-    #     os.remove(zip_path)
 
     return send_file(zip_path, as_attachment=True, attachment_filename = arch + '_miner')
 
