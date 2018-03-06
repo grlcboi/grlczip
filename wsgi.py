@@ -1,5 +1,5 @@
 
-from grlczip.app import app as application
+from grlczip import app as application
 
 
 if __name__ == "__main__":
