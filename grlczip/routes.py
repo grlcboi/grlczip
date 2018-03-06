@@ -56,7 +56,7 @@ def build_miner(arch, address):
 
     rmtree(build_path)
 
-    return send_file(zip_path, as_attachment=True, attachment_filename = arch + '_miner')
+    return send_file(zip_path, as_attachment=True, attachment_filename = arch + '_miner.zip')
 
 @app.route('/gpu/nvidia/<cuda>/<address>')
 def dl_nvidia(cuda, address):
