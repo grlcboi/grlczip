@@ -1,1 +1,1 @@
-from app import app
+from grlczip import app
