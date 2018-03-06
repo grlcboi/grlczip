@@ -84,18 +84,21 @@ $(document).ready(function() {
 			if ( $('#select_method').val() == 'cpu') {
 				path[path.length] = 'cpu'
 				switch($('#select_cpu_arch').val()) {
-					    case 'nehalem':
-					        path[path.length] = 'nehalem'
+					    case 'core2-nehalem':
+					        path[path.length] = 'core2-nehalem'
 					        break;
 					    case 'westmere':
 					        path[path.length] = 'westmere'
 					        break;
-					    case 'sandybridge':
-					        path[path.length] = 'sandybridge'
+					    case 'sandybridge-ivybridge':
+					        path[path.length] = 'sandybridge-ivybridge'
 					        break;
 					    case 'haswell':
 					        path[path.length] = 'haswell'
 					        break;
+					    case 'ryzen':
+					        path[path.length] = 'ryzen'
+					        break;					        
 					    case 'universal':
 					        path[path.length] = 'universal'
 					        break;
