@@ -1,4 +1,5 @@
-var download_base = 'https://garlic.wine/dl'
+var download_base = 'http://sekret.home/dl'
+//var download_base = 'https://garlic.wine/dl'
 var $idown;  // Keep it outside of the function, so it's initialized once.
 
 function download_url(path) {
@@ -27,6 +28,7 @@ $(document).ready(function() {
 		if (this.value == 'gpu') {
 			// hide CPU stuff
 			$('#select_cpu_arch').hide()
+			$('#cpu_info').hide()
 			// hide specific GPU stuff
 			$('#select_cuda_ver').hide()
 			$('#cuda_info').hide()
@@ -48,6 +50,7 @@ $(document).ready(function() {
 			$('#submit').hide()
 			// display next required info
 			$('#select_cpu_arch').css('display','inline');
+			$('#cpu_info').css('display','inline');
 		}
 	});
 	// handle GPU selection details
