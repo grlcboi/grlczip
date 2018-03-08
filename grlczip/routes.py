@@ -14,15 +14,15 @@ j_env = Environment(
     )
 
 arch_to_bin = {
-    'core2-nehalem': 'cpuminer',
-    'westmere': 'cpuminer',
-    'sandybridge-ivybridge': 'cpuminer',
-    'haswell': 'cpuminer',
-    'ryzen': 'cpuminer',
-    'universal': 'universal',
+    'core2-nehalem': 'cpuminer-sse2',
+    'westmere': 'cpuminer-aes-sse42',
+    'sandybridge-ivybridge': 'cpuminer-aes-avx',
+    'haswell': 'cpuminer-avx2',
+    'ryzen': 'cpuminer-avx2-sha',
+    'universal': 'cpuminer-allium-x64',
     'amdgpu': 'sgminer',
-    'cuda8': 'ccminer',
-    'cuda9': 'ccminer',
+    'cuda8': 'ccminer-sm20-x86',
+    'cuda9': 'ccminer-x64',
 }
 
 def zipdir(path, ziph):
@@ -34,16 +34,18 @@ def build_miner(arch, address):
     bin_name = arch_to_bin[arch]
     job_uuid = str(uuid4())
     build_path = data_path + '/tmp/' + job_uuid
+    bin_path = build_path + '/miner'
     zip_path = data_path + '/tmp/' + job_uuid + '.zip'
 
     os.mkdir(build_path)
+    os.mkdir(build_path + '/miner')
 
     for file in glob(data_path + '/bins/' + arch + '/*'):
-        copy(file, build_path)
+        copy(file, bin_path)
     
     if arch in ('core2-nehalem', 'westmere', 'sandybridge-ivybridge', 'haswell', 'ryzen'):
         for file in glob(data_path + '/bins/cpu-opt-shared/*'):
-            copy(file, build_path)
+            copy(file, bin_path)
 
     template = j_env.get_template('StartMiner.bat')
 
