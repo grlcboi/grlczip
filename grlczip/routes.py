@@ -60,14 +60,19 @@ def build_miner(arch, address):
 
     return send_file(zip_path, as_attachment=True, attachment_filename = arch + '_miner.zip')
 
-@app.route('/gpu/nvidia/<cuda>/<address>')
+@app.route('/dl/gpu/nvidia/<cuda>/<address>')
 def dl_nvidia(cuda, address):
     return 'nvidia'
 
-@app.route('/gpu/amd/<address>')
+@app.route('/dl/gpu/amd/<address>')
 def dl_amd(address):
     return build_miner('amdgpu', address)
 
-@app.route('/cpu/<arch>/<address>')
+@app.route('/dl/cpu/<arch>/<address>')
 def dl_cpu(arch, address):
     return build_miner(arch, address)
+
+
+@app.route('/dl')
+def index():
+    return 'download miner'
