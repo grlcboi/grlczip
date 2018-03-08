@@ -1,8 +1,10 @@
-var download_base = 'https://garlic.wine'
+var download_base = 'https://garlic.wine/dl'
 var $idown;  // Keep it outside of the function, so it's initialized once.
 
 function download_url(path) {
 	url = download_base + path
+	alert(url)
+
 	if ($idown) {
 		$idown.attr('src',url);
 	} else {
