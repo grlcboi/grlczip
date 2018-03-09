@@ -67,7 +67,7 @@ def build_miner(arch, address):
 
 @app.route('/dl/gpu/nvidia/<cuda>/<address>')
 def dl_nvidia(cuda, address):
-    return 'nvidia'
+    return build_miner('cuda' + cuda, address)
 
 @app.route('/dl/gpu/amd/<address>')
 def dl_amd(address):
