@@ -1,49 +1,58 @@
-<head>
-	
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src="./zipmine.js"></script>
+<!DOCTYPE html>
+<html>
 
-	<style type="text/css">
-		.hidden {
-	        display: none;
-	    }
-	</style>
+<head>
+    <title></title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="./zipmine.js"></script>
+    <style type="text/css">
+    .hidden {
+        display: none;
+    }
+    </style>
 </head>
 
+<body>
+    <b>Links:</b>
+    <a href="https://garlic.wine">Home Page</a> &middot;
+    <a href="https://drink.garlic.wine">Mining Pool</a>&middot;
+    <a href="https://faucet.garlic.wine">Faucet</a>
+    <h1>Welcome to Garlic Wine!</h1>
+    <div>
+        Generate a miner:
+        <select id='select_method'>
+            <option value='select'>GPU or CPU</option>
+            <option value='gpu'>GPU</option>
+            <option value='cpu'>CPU</option>
+        </select>
+        <!-- handle gpu -->
+        <select class='hidden' id='select_gpu_make'>
+            <option value='select'>Make</option>
+            <option value='nvidia'>NVidia</option>
+            <option value='amd'>AMD</option>
+        </select>
+        <select class='hidden' id='select_cuda_ver'>
+            <option value='select'>CUDA Version</option>
+            <option value='9'>9 and up</option>
+            <option value='8'>8 and lower</option>
+        </select>
+        <!-- handle cpu -->
+        <select class='hidden' id='select_cpu_arch'>
+            <option value='select'>Architecture</option>
+            <option value='universal'>Universal</option>
+            <option value='core2-nehalem'>Core2/Nehalem</option>
+            <option value='westmere'>Westmere</option>
+            <option value='sandybridge-ivybridge'>Sandy/Ivybridge</option>
+            <option value='haswell'>Haswell</option>
+            <option value='ryzen'>Ryzen</option>
+        </select>
+        <input type='text' class='hidden' id='input_wallet' value='Enter GRLC Address'></input>
+        <button class='hidden' id='submit'>Download Miner</button>
+        <br>
+        <a class='hidden' id='cuda_info' href='http://lmgtfy.com/?q=find+cuda+version+windows'>Determine which CUDA version you have</a>
+        <a class='hidden' id='cpu_info' href='http://lmgtfy.com/?q=find+processor+architecture+windows'>Determine which CPU architecture you have</a>
+        <br>
+    </div>
+</body>
 
-<div>
-    Generate a miner:
-    <select id='select_method'>
-        <option value='select'>GPU or CPU</option>
-        <option value='gpu'>GPU</option>
-        <option value='cpu'>CPU</option>
-    </select>
-    <!-- handle gpu -->
-    <select class='hidden' id='select_gpu_make'>
-        <option value='select'>Make</option>
-        <option value='nvidia'>NVidia</option>
-        <option value='amd'>AMD</option>
-    </select>
-    <select class='hidden' id='select_cuda_ver'>
-        <option value='select'>CUDA Version</option>
-        <option value='9'>9 and up</option>
-        <option value='8'>8 and lower</option>
-    </select>
-    <!-- handle cpu -->
-    <select class='hidden' id='select_cpu_arch'>
-        <option value='select'>Architecture</option>
-        <option value='universal'>Universal</option>
-        <option value='core2-nehalem'>Core2/Nehalem</option>
-        <option value='westmere'>Westmere</option>
-        <option value='sandybridge-ivybridge'>Sandy/Ivybridge</option>
-        <option value='haswell'>Haswell</option>
-        <option value='ryzen'>Ryzen</option>
-    </select>    
-
-    <input type='text' class='hidden' id='input_wallet' value='Enter GRLC Address'></input>
-    <button class='hidden' id='submit'>Download Miner</button>
-    <br>
-    <a class='hidden' id='cuda_info' href='http://lmgtfy.com/?q=find+cuda+version+windows'>Determine which CUDA version you have</a>
-    <a class='hidden' id='cpu_info' href='http://lmgtfy.com/?q=find+processor+architecture+windows'>Determine which CPU architecture you have</a>
-    <br>
-</div>
+</html>
