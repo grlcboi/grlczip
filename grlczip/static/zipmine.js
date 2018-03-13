@@ -1,4 +1,4 @@
-var download_base = 'http://garlic.wine/dl'
+var download_base = 'https://garlic.wine/dl'
 var $idown;  // Keep it outside of the function, so it's initialized once.
 
 function download_url(path) {
