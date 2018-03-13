@@ -139,7 +139,7 @@ $(document).ready(function() {
 
 	// makes address field pretty
 	$('#input_wallet').click(function(){
-		this.value = ''
+		if (this.value = 'Enter GRLC Address') { this.value = '' }
 	});
 	// makes address field pretty
 	$('#input_wallet').focusout(function(){
